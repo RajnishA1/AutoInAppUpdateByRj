@@ -13,7 +13,9 @@
 	}
 
  > Step 2. Add the dependency
->
-> 	dependencies {
-	        implementation("com.github.RajnishA1:AutoInAppUpdateByRj:1.0.0")
-	}
+
+''' gradle
+
+> dependencies {
+     implementation("com.github.RajnishA1:AutoInAppUpdateByRj:1.0.0")
+}
