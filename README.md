@@ -17,5 +17,8 @@
 ''' gradle
 
 > dependencies {
+>
+> // add this into your build.gradle file
+> 
      implementation("com.github.RajnishA1:AutoInAppUpdateByRj:1.0.0")
 }
