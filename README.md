@@ -66,8 +66,9 @@ class MainActivity : AppCompatActivity() {
 
     // Function to show update dialog
     private fun showUpdateDialog() {
-        DialogHelper.showUpdateDialog(this, "https://github.com/RajnishA1/updated-apk-url/raw/refs/heads/main/photo.apk")
+        DialogHelper.showUpdateDialog(this, Your_URL)
     }
 
+note : URL should be direct download url
 
 }
