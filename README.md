@@ -1,74 +1,113 @@
-# Auto In App Library By Rj
+# 🚀 Auto In App Update By Rj
+Automatically prompt users to update your APK directly from your custom URL — no Play Store required!
 
-> Step 1. Add the JitPack repository to your build file
+<p align="center"> <img src="https://github.com/user-attachments/assets/d999f427-7abf-414b-b6c1-3360301cff00" width="150"/> <img src="https://github.com/user-attachments/assets/99219e7a-adc4-4ec2-8fea-4237b1ef38c4" width="150"/> <img src="https://github.com/user-attachments/assets/78553285-7412-47a5-bb99-509713a48995" width="150"/>  <img src="https://github.com/user-attachments/assets/06d75410-eb14-4658-b6d9-2e6557df9e2f" width="150"/> <img src="https://github.com/user-attachments/assets/f147ca39-31a3-4e79-af81-d40c4dfe7d26" width="150"/>   </p>
 
-''' gradle
+> 📦 Step 1: Add the JitPack Repository
+
+''' settings.gradle
 
 	dependencyResolutionManagement {
-		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-		repositories {
-			mavenCentral()
-			maven { url = uri("https://jitpack.io") }
-		}
+          repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+          repositories {
+           google()
+           mavenCentral()
+           maven { url = uri("https://jitpack.io") }
+      }
+}
+
+
+ > 🧩 Step 2: Add the Dependency
+
+''' app/build.gradle
+
+	dependencies {
+    		implementation("com.github.RajnishA1:AutoInAppUpdateByRj:3.0")
 	}
 
- > Step 2. Add the dependency
-
-''' gradle
-
-> dependencies {
->
-> // add this into your build.gradle file
-> 
-     implementation("com.github.RajnishA1:AutoInAppUpdateByRj:1.0.0")
-}
-
-> step 3 In main activity
->
->      import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.rajnish.autoinappupdatebyrj.uitls.DialogHelper
-import com.rajnish.autoinappupdatebyrj.uitls.PermissionUtils
-
-class MainActivity : AppCompatActivity() {
 
 
+> Step 3: Implement in MainActivity
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    class MainActivity : AppCompatActivity() {
 
-        // Check if storage permission is granted
-        if (!PermissionUtils.hasStoragePermission(this)) {
-            PermissionUtils.requestStoragePermission(this)
-        } else if (!PermissionUtils.hasInstallPermission(this)) {
-            PermissionUtils.requestInstallPermission(this)
-        } else {
-            // If both permissions are granted, show the update dialog
-            showUpdateDialog()
-        }
+	    private lateinit var storagePermissionLauncher: ActivityResultLauncher<Array<String>>
+	    private lateinit var installPermissionLauncher: ActivityResultLauncher<Intent>
+	    private lateinit var manageAllFilesPermissionLauncher: ActivityResultLauncher<Intent>
+	    private lateinit var permissionManager: PermissionManager
+	
+	    override fun onCreate(savedInstanceState: Bundle?) {
+	        super.onCreate(savedInstanceState)
+	        setContentView(R.layout.activity_main)
+	
+	        registerPermissionLaunchers()
+	
+	        permissionManager = PermissionManager(
+	            context = this,
+	            activity = this,
+	            apkUrl = "https://github.com/RajnishA1/updated-apk-url/raw/refs/heads/main/photo.apk", // <-- Put your direct APK link here
+	            storagePermissionLauncher = storagePermissionLauncher,
+	            installPermissionLauncher = installPermissionLauncher,
+	            manageAllFilesPermissionLauncher = manageAllFilesPermissionLauncher
+	        )
+	
+	        permissionManager.checkAndRequestPermissions()
+	    }
+	
+	    private fun registerPermissionLaunchers() {
+	        storagePermissionLauncher = registerForActivityResult(
+	            ActivityResultContracts.RequestMultiplePermissions()
+	        ) { permissions ->
+	            if (permissions.values.all { it }) {
+	                permissionManager.checkAndRequestPermissions()
+	            } else {
+	                permissionManager.showWhyPermissionDialog("Storage permission is required to download the update.")
+	            }
+	        }
+	
+	        installPermissionLauncher = registerForActivityResult(
+	            ActivityResultContracts.StartActivityForResult()
+	        ) {
+	            permissionManager.checkAndRequestPermissions()
+	        }
+	
+	        manageAllFilesPermissionLauncher = registerForActivityResult(
+	            ActivityResultContracts.StartActivityForResult()
+	        ) {
+	            permissionManager.checkAndRequestPermissions()
+	        }
+	      }
     }
 
 
 
 
-    override fun onResume() {
-        super.onResume()
-        if (!PermissionUtils.hasStoragePermission(this)) {
-            PermissionUtils.requestStoragePermission(this)
-        } else if (!PermissionUtils.hasInstallPermission(this)) {
-            PermissionUtils.requestInstallPermission(this)
-        } else {
-            // If both permissions are granted, show the update dialog
-            showUpdateDialog()
-        }
-    }
 
-    // Function to show update dialog
-    private fun showUpdateDialog() {
-        DialogHelper.showUpdateDialog(this, Your_URL)
-    }
 
-note : URL should be direct download url
+📝 Notes
+	 ✅ Make sure your APK link is a direct download URL.
+	
+	🛡️ Handles runtime permissions for:
+	
+	MANAGE_EXTERNAL_STORAGE (Android 11+)
+	
+	READ_MEDIA_IMAGES (Android 13+)
+	
+	INSTALL_UNKNOWN_APPS
+	
+	📦 Downloads and installs the APK after permission is granted.
 
-}
+ 💡 Features
+	Simple integration — just plug and play
+	
+	Supports all Android versions (SDK 23+)
+	
+	Clean permission management via PermissionManager
+	
+	Fully customizable dialog UI via DialogHelper
+
+🙌 Contributing
+	Feel free to fork and contribute! Pull requests are welcome.
+
+ 📜 License
+	MIT License © 2025 RajnishA1
