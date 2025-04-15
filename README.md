@@ -1,7 +1,7 @@
 # 🚀 Auto In App Update By Rj
 Automatically prompt users to update your APK directly from your custom URL — no Play Store required!
 
-<p align="center"> <img src="https://github.com/user-attachments/assets/d999f427-7abf-414b-b6c1-3360301cff00" width="150"/> <img src="https://github.com/user-attachments/assets/f147ca39-31a3-4e79-af81-d40c4dfe7d26" width="150"/> <img src="https://github.com/user-attachments/assets/06d75410-eb14-4658-b6d9-2e6557df9e2f" width="150"/> <img src="https://github.com/user-attachments/assets/78553285-7412-47a5-bb99-509713a48995" width="150"/> <img src="https://github.com/user-attachments/assets/99219e7a-adc4-4ec2-8fea-4237b1ef38c4" width="150"/> </p>
+<p align="center"> <img src="https://github.com/user-attachments/assets/d999f427-7abf-414b-b6c1-3360301cff00" width="150"/> <img src="https://github.com/user-attachments/assets/99219e7a-adc4-4ec2-8fea-4237b1ef38c4" width="150"/> <img src="https://github.com/user-attachments/assets/f147ca39-31a3-4e79-af81-d40c4dfe7d26" width="150"/> <img src="https://github.com/user-attachments/assets/06d75410-eb14-4658-b6d9-2e6557df9e2f" width="150"/> <img src="https://github.com/user-attachments/assets/78553285-7412-47a5-bb99-509713a48995" width="150"/>  </p>
 
 > 📦 Step 1: Add the JitPack Repository
 
