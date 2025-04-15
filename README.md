@@ -79,12 +79,7 @@ Automatically prompt users to update your APK directly from your custom URL — 
 
 
 
-![WhatsApp Image 2025-04-15 at 11 02 10_4f2048f8](https://github.com/user-attachments/assets/d999f427-7abf-414b-b6c1-3360301cff00)
-![WhatsApp Image 2025-04-15 at 11 02 11_98f53953](https://github.com/user-attachments/assets/f147ca39-31a3-4e79-af81-d40c4dfe7d26)
-![WhatsApp Image 2025-04-15 at 11 02 11_2ffde1a1](https://github.com/user-attachments/assets/06d75410-eb14-4658-b6d9-2e6557df9e2f)
-![WhatsApp Image 2025-04-15 at 11 02 10_89334686](https://github.com/user-attachments/assets/78553285-7412-47a5-bb99-509713a48995)
-![WhatsApp Image 2025-04-15 at 11 02 09_dcf9dad8](https://github.com/user-attachments/assets/99219e7a-adc4-4ec2-8fea-4237b1ef38c4)
-
+<p align="center"> <img src="https://github.com/user-attachments/assets/d999f427-7abf-414b-b6c1-3360301cff00" width="250"/> <img src="https://github.com/user-attachments/assets/f147ca39-31a3-4e79-af81-d40c4dfe7d26" width="250"/> <img src="https://github.com/user-attachments/assets/06d75410-eb14-4658-b6d9-2e6557df9e2f" width="250"/> <img src="https://github.com/user-attachments/assets/78553285-7412-47a5-bb99-509713a48995" width="250"/> <img src="https://github.com/user-attachments/assets/99219e7a-adc4-4ec2-8fea-4237b1ef38c4" width="250"/> </p>
 
 
 📝 Notes
