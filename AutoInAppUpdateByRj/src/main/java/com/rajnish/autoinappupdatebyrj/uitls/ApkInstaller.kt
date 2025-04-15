@@ -16,7 +16,7 @@ object ApkInstaller {
         if (!file.exists()) return
 
         val uri: Uri =
-            FileProvider.getUriForFile(context, "${context.packageName}.provider", file)
+            FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
 
         val intent = Intent(Intent.ACTION_VIEW).apply {
             setDataAndType(uri, "application/vnd.android.package-archive")
