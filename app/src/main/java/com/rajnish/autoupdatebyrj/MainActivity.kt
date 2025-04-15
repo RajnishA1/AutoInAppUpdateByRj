@@ -1,48 +1,64 @@
 package com.rajnish.autoupdatebyrj
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.rajnish.autoinappupdatebyrj.uitls.DialogHelper
-import com.rajnish.autoinappupdatebyrj.uitls.PermissionUtils
+import com.rajnish.autoinappupdatebyrj.uitls.PermissionManager
 
 class MainActivity : AppCompatActivity() {
 
-
+    private lateinit var storagePermissionLauncher: ActivityResultLauncher<Array<String>>
+    private lateinit var installPermissionLauncher: ActivityResultLauncher<Intent>
+    private lateinit var manageAllFilesPermissionLauncher: ActivityResultLauncher<Intent>
+    private lateinit var permissionManager: PermissionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Check if storage permission is granted
-        if (!PermissionUtils.hasStoragePermission(this)) {
-            PermissionUtils.requestStoragePermission(this)
-        } else if (!PermissionUtils.hasInstallPermission(this)) {
-            PermissionUtils.requestInstallPermission(this)
-        } else {
-            // If both permissions are granted, show the update dialog
-            showUpdateDialog()
+        registerPermissionLaunchers()
+
+        permissionManager = PermissionManager(
+            context = this,
+            activity = this,
+            apkUrl = "https://github.com/RajnishA1/updated-apk-url/raw/refs/heads/main/photo.apk",
+            storagePermissionLauncher = storagePermissionLauncher,
+            installPermissionLauncher = installPermissionLauncher,
+            manageAllFilesPermissionLauncher = manageAllFilesPermissionLauncher
+        )
+
+        // Check and request permissions
+        permissionManager.checkAndRequestPermissions()
+    }
+
+    /**
+     * Register activity result launchers for permissions.
+     */
+    private fun registerPermissionLaunchers() {
+        storagePermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            val granted = permissions.values.all { it }
+            if (granted) {
+                permissionManager.checkAndRequestPermissions()
+            } else {
+                // Optional: Inform user about why the permission is needed
+            }
+        }
+
+        installPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            permissionManager.checkAndRequestPermissions()
+        }
+
+        manageAllFilesPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            permissionManager.checkAndRequestPermissions()
         }
     }
-
-
-
-
-    override fun onResume() {
-        super.onResume()
-        if (!PermissionUtils.hasStoragePermission(this)) {
-            PermissionUtils.requestStoragePermission(this)
-        } else if (!PermissionUtils.hasInstallPermission(this)) {
-            PermissionUtils.requestInstallPermission(this)
-        } else {
-            // If both permissions are granted, show the update dialog
-            showUpdateDialog()
-        }
-    }
-
-    // Function to show update dialog
-    private fun showUpdateDialog() {
-        DialogHelper.showUpdateDialog(this, "https://github.com/RajnishA1/updated-apk-url/raw/refs/heads/main/photo.apk")
-    }
-
 
 }

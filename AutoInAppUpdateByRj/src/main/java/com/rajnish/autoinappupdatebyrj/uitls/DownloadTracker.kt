@@ -13,7 +13,8 @@ object DownloadTracker {
         context: Context,
         progressBar: ProgressBar?,
         progressText: TextView?,
-        fileName: String
+        fileName: String,
+        onDownloadComplete: () -> Unit
     ) {
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
 
@@ -34,6 +35,7 @@ object DownloadTracker {
                             progressBar?.progress = 100
                             progressText?.text = "Completed"
                             progressBar?.isVisible = false
+                            onDownloadComplete()
                             ApkInstaller.installApk(context,fileName)
                         }
                         isRunning = false

@@ -15,11 +15,8 @@ object ApkInstaller {
         val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName)
         if (!file.exists()) return
 
-        val uri: Uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        val uri: Uri =
             FileProvider.getUriForFile(context, "${context.packageName}.provider", file)
-        } else {
-            Uri.fromFile(file)
-        }
 
         val intent = Intent(Intent.ACTION_VIEW).apply {
             setDataAndType(uri, "application/vnd.android.package-archive")

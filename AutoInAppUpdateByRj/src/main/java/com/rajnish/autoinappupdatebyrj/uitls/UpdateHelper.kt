@@ -20,7 +20,8 @@ object UpdateHelper {
         context: Context,
         apkUrl: String,
         progressBar: ProgressBar? = null,
-        progressText: TextView? = null
+        progressText: TextView? = null,
+        onDownloadComplete: () -> Unit
     ) {
         // Delete old APK if exists
         val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), APK_NAME)
@@ -43,6 +44,8 @@ object UpdateHelper {
         progressBar?.isVisible = true
         progressText?.text = "Download started..."
 
-        DownloadTracker.trackDownloadProgress(context, progressBar, progressText,APK_NAME)
+        DownloadTracker.trackDownloadProgress(context, progressBar, progressText,APK_NAME){
+            onDownloadComplete()
+        }
     }
 }
