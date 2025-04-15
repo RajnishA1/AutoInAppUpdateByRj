@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.rajnish.autoinappupdatebyrj.uitls.DialogHelper.showPermissionExplanationDialog
 import com.rajnish.autoinappupdatebyrj.uitls.PermissionManager
 
 class MainActivity : AppCompatActivity() {
@@ -45,6 +46,9 @@ class MainActivity : AppCompatActivity() {
                 permissionManager.checkAndRequestPermissions()
             } else {
                 // Optional: Inform user about why the permission is needed
+                showPermissionExplanationDialog(this@MainActivity) {
+                    permissionManager.checkAndRequestPermissions()
+                }
             }
         }
 
