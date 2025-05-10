@@ -2,9 +2,12 @@ package com.rajnish.autoupdatebyrj
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.rajnish.autoinappupdatebyrj.uitls.DialogHelper.showPermissionExplanationDialog
 import com.rajnish.autoinappupdatebyrj.uitls.PermissionManager
 
@@ -17,7 +20,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
+
+
 
         registerPermissionLaunchers()
 
