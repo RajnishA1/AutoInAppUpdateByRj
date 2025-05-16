@@ -22,7 +22,7 @@ Automatically prompt users to update your APK directly from your custom URL — 
 ''' app/build.gradle
 
 	dependencies {
-    		implementation("com.github.RajnishA1:AutoInAppUpdateByRj:1.0")
+    		implementation("com.github.RajnishA1:AutoInAppUpdateByRj:7.0")
 	}
 
 
